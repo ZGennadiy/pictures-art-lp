@@ -954,25 +954,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var modals = function modals() {
+  var btnPressed = false;
+
+  var calcScrollWidth = function calcScrollWidth() {
+    var div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    var scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
+  };
+
   var bindModal = function bindModal(triggerSelector, modalSelector, closeSelector) {
     var destroy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
     var trigger = document.querySelectorAll(triggerSelector);
     var modal = document.querySelector(modalSelector);
     var close = document.querySelector(closeSelector);
     var windows = document.querySelectorAll('[data-modal]');
-
-    var calcScrollWidth = function calcScrollWidth() {
-      var div = document.createElement('div');
-      div.style.width = '50px';
-      div.style.height = '50px';
-      div.style.overflowY = 'scroll';
-      div.style.visibility = 'hidden';
-      document.body.appendChild(div);
-      var scrollWidth = div.offsetWidth - div.clientWidth;
-      div.remove();
-      return scrollWidth;
-    };
-
     var scrollWidth = calcScrollWidth();
     trigger.forEach(function (item) {
       item.addEventListener('click', function (e) {
@@ -980,12 +981,15 @@ var modals = function modals() {
           e.preventDefault();
         }
 
+        btnPressed = true;
+
         if (destroy) {
           item.remove();
         }
 
         windows.forEach(function (item) {
           item.style.display = 'none';
+          item.classList.add('animated', 'fadeIn');
         });
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
@@ -1021,18 +1025,6 @@ var modals = function modals() {
         }
       });
 
-      var calcScrollWidth = function calcScrollWidth() {
-        var div = document.createElement('div');
-        div.style.width = '50px';
-        div.style.height = '50px';
-        div.style.overflowY = 'scroll';
-        div.style.visibility = 'hidden';
-        document.body.appendChild(div);
-        var scrollWidth = div.offsetWidth - div.clientWidth;
-        div.remove();
-        return scrollWidth;
-      };
-
       if (!display) {
         document.querySelector(selector).style.display = 'block';
         document.body.style.overflow = "hidden";
@@ -1042,10 +1034,23 @@ var modals = function modals() {
     }, time);
   };
 
+  var openByScroll = function openByScroll(selector) {
+    function isEndOfPage() {
+      var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      return window.pageYOffset + document.documentElement.clientHeight >= scrollHeight;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!btnPressed && isEndOfPage()) {
+        document.querySelector(selector).click();
+      }
+    });
+  };
+
   bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
-  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close');
-  showModalByTime('.popup-consultation', 5000);
+  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
+  openByScroll('.fixed-gift'); // showModalByTime('.popup-consultation', 60000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
