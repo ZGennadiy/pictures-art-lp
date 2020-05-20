@@ -72,7 +72,8 @@ const forms = () => {
             statusMessage.appendChild(textMessage);
 
             const formData = new FormData(item);
-            const api = item.closest('.popup-design') || item.classList.contains('calc-form') ? path.designer : path.question;
+            const api = item.closest('.popup-design') || item.classList.contains('calc-form') ?
+                path.designer : path.question;
             console.log(api);
 
             postData(api, formData)
