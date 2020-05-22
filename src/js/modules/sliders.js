@@ -36,14 +36,14 @@ const sliders = (slides, direction, prevBtnSelector, nextBtnSelector) => {
 
         prevBtn.addEventListener('click', () => {
             scrollToPrevSlide(1);
-            items[slideIndex - 1].classList.remove('slideInRight');
-            items[slideIndex - 1].classList.add('slideInLeft');
+            items[slideIndex - 1].classList.remove('zoomInRight');
+            items[slideIndex - 1].classList.add('zoomInLeft');
         });
 
         nextBtn.addEventListener('click', () => {
             scrollToNextSlide(1);
-            items[slideIndex - 1].classList.remove('slideInLeft');
-            items[slideIndex - 1].classList.add('slideInRight');
+            items[slideIndex - 1].classList.remove('zoomInLeft');
+            items[slideIndex - 1].classList.add('zoomInRight');
         });
     } catch(error){}
 
@@ -56,8 +56,8 @@ const sliders = (slides, direction, prevBtnSelector, nextBtnSelector) => {
         } else {
             autoScrollPaused = setInterval(() => {
                 scrollToNextSlide(1);
-                items[slideIndex - 1].classList.remove('slideInLeft');
-                items[slideIndex - 1].classList.add('slideInRight');
+                items[slideIndex - 1].classList.remove('zoomInLeft');
+                items[slideIndex - 1].classList.add('zoomInRight');
             }, 3000);
         }
     };
