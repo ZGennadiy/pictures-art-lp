@@ -4,6 +4,7 @@ import forms from './modules/forms';
 import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showMore from './modules/showMore';
+import calc from './modules/calc';
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -17,4 +18,5 @@ window.addEventListener('DOMContentLoaded', () => {
     checkTextInputs('input[name="name"]');
     checkTextInputs('input[name="message"]');
     showMore('.button-styles', '#styles .row');
+    calc('#size', '#material', '.calc-label > input[type="checkbox"]', '.promocode', '.calc-price');
 });

@@ -505,7 +505,7 @@ h4 {
   font-size: 2rem;
   margin-bottom: 3rem;
 }
-.calc select {
+.calc select, .calc .calc-options, .calc-label {
   opacity: 0.6;
   font-family: 'Circe Extra Bold', sans-serif;
   margin-left: 4rem;
@@ -515,6 +515,19 @@ h4 {
   font-size: 1.9rem;
   padding: 2rem 0;
 }
+
+.calc .calc-options {
+  padding-bottom: 10px;
+}
+
+.calc-label {
+  padding: 0;
+}
+
+.calc-label input {
+  margin-right: 10px;
+}
+
 .calc .promocode {
   opacity: 0.6;
   font-family: 'Circe Extra Bold', sans-serif;
@@ -1481,7 +1494,7 @@ h4 {
   .footer .phone-whatsapp {
     margin: 0.5rem 0;
   }
-  .calc select {
+  .calc select, .calc input[type=checkbox] {
     position: relative;
     left: 30%;
   }
@@ -1705,7 +1718,7 @@ h4 {
   .calc h2 {
     margin-bottom: 4rem;
   }
-  .calc select {
+  .calc select, .calc input[type=checkbox] {
     left: 0;
     margin: 0;
     padding: 1rem;

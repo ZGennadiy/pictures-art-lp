@@ -20,5 +20,26 @@
           "title": "Шарж",
           "link": "#sharj"
       }
-  ]
+  ],
+  "price": {
+      "size": {
+        "small": "1000",
+        "medium": "1500",
+        "big": "2000",
+        "large": "2500"
+      },
+      "material": {
+        "fibre": "1",
+        "linen": "1.2",
+        "cotton": "1.5"
+      },
+      "options": {
+        "gelCover": "300",
+        "express": "1000",
+        "delivery": "500"
+      },
+      "promocode": {
+          "iwantpopart": "0.7"
+      }
+  }
 }

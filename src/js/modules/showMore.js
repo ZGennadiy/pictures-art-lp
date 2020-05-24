@@ -35,7 +35,7 @@ const showMore = (triger, wrapper) => {
 
             document.querySelector(wrapper).appendChild(card);
         });
-    }
+    };
     
     
     showMoreBtn.addEventListener('click', function() {

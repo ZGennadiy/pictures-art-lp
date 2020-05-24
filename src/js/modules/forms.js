@@ -65,8 +65,11 @@ const forms = () => {
             const formData = new FormData(item);
             const api = item.closest('.popup-design') || item.classList.contains('calc-form') ?
                 path.designer : path.question;
-            console.log(api);
-
+            if (item.getAttribute('[data-calc]' === 'calcForm')) {
+                const resultBlock = document.querySelector('.calc-price');
+                formData.append('Суммв заказа', resultBlock.textContent);
+            }
+            
             postData(api, formData)
                 .then((result) => {
                     console.log(result);
