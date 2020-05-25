@@ -356,6 +356,11 @@ h4 {
   padding: 1.5rem 4rem;
   margin-bottom: 7rem;
 }
+
+.main-slider-item img {
+  max-width: 100%;
+}
+
 .main-slider-btn {
   position: absolute;
   top: 50%;
