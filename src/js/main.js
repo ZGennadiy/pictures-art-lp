@@ -7,6 +7,7 @@ import showMore from './modules/showMore';
 import calc from './modules/calc';
 import filter from './modules/filter';
 import picturesInterior from './modules/picturesInterior';
+import collapse from './modules/collapse';
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -23,4 +24,5 @@ window.addEventListener('DOMContentLoaded', () => {
     calc('#size', '#material', '.calc-label > input[type="checkbox"]', '.promocode', '.calc-price');
     filter();
     picturesInterior('.sizes-block');
+    collapse('.accordion-heading');
 });
