@@ -6,6 +6,8 @@ import checkTextInputs from './modules/checkTextInputs';
 import showMore from './modules/showMore';
 import calc from './modules/calc';
 import filter from './modules/filter';
+import picturesInterior from './modules/picturesInterior';
+
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -20,4 +22,5 @@ window.addEventListener('DOMContentLoaded', () => {
     showMore('.button-styles', '#styles .row');
     calc('#size', '#material', '.calc-label > input[type="checkbox"]', '.promocode', '.calc-price');
     filter();
+    picturesInterior('.sizes-block');
 });
