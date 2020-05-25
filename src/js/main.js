@@ -5,7 +5,7 @@ import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showMore from './modules/showMore';
 import calc from './modules/calc';
-
+import filter from './modules/filter';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -19,4 +19,5 @@ window.addEventListener('DOMContentLoaded', () => {
     checkTextInputs('input[name="message"]');
     showMore('.button-styles', '#styles .row');
     calc('#size', '#material', '.calc-label > input[type="checkbox"]', '.promocode', '.calc-price');
+    filter();
 });

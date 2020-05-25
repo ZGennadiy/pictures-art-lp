@@ -7,20 +7,47 @@ const calc = (size, material, options, promocode, result) => {
     const promoBlock = document.querySelector(promocode);
     const resultBlock = document.querySelector(result);
     
-    const order = {};
+    const orderState = {
+        size: 'empty',
+        material: 'empty',
+        options: {
+            gelCover: false,
+            express: false,
+            delivery: false,
+        },
+        promocode: {
+            iwantpopart: false,
+        }
+    };
 
     let sum = 0;
 
-    const getCost = async (param, select) => {
+    const renderSumOfOrder = (pricelist) => {
+        if (sizeBlock.value == '' || materialBlock.value == '') {
+            resultBlock.textContent = 'Пожалуйста, выберите размер и материал картины';
+        } else {
+        const { size, material, options, promocode } = orderState;
+        const { gelCover, express, delivery } = options;
+        console.log(gelCover, express, delivery);
+        const { iwantpopart } = promocode;
+
+        const sizeCost = pricelist.size[size];
+        const materialCost = pricelist.material[material];
+        const gelCoverCost = gelCover ? +pricelist.options.gelCover : 0;
+        const expressCost = express ? +pricelist.options.express : 0;
+        const deliveryCost = delivery ? +pricelist.options.delivery : 0;
+        const optionsCost = gelCoverCost + expressCost + deliveryCost;
+        const hasPromo = iwantpopart ? +pricelist.promocode.iwantpopart : 1;
+        
+        sum = Math.round((sizeCost * materialCost + optionsCost) * hasPromo);
+
+        resultBlock.textContent = `${sum} руб.`;
+        }
+    };
+
+    const getCost = async () => {
         await getResource('assets/db.json')
-        .then((result) => {
-            if (result.price[param][select]) {
-                const props = param === 'options' ? select : param;
-                order[props] = Number(result.price[param][select]);
-            } else {
-                order[param] = param === 'promocode' ? 1 : 0;
-            }
-        })
+        .then((result) => renderSumOfOrder(result.price))
         .catch((error) => console.error(error));
     };
 
@@ -28,28 +55,31 @@ const calc = (size, material, options, promocode, result) => {
         if (sizeBlock.value == '' || materialBlock.value == '') {
             resultBlock.textContent = 'Пожалуйста, выберите размер и материал картины';
         } else {
-            getCost('size', sizeBlock.value);
-            getCost('material', materialBlock.value);
-            optionsBlock.forEach((option) => {
-                if (option.checked) {
-                    getCost('options', option.value);
-                } else {
-                    order[option.value] = 0;
-                }
-            });
-            getCost('promocode', promoBlock.value.toLowerCase());
-            setTimeout(() => {
-                const { size, material, gelCover, express, delivery, promocode } = order;
-                sum = Math.round((size * material + gelCover + express + delivery) * promocode);
-
-                resultBlock.textContent = `${sum} руб.`;
-            }, 300);
-            
+            getCost();
         }
     };
 
-    [sizeBlock, materialBlock, ...optionsBlock].forEach((item) => item.addEventListener('change', showResult));
-    promoBlock.addEventListener('input', showResult);
+    [sizeBlock, materialBlock, ...optionsBlock].forEach((item) => item.addEventListener('change', ({ target }) => {
+        const param = target.parentElement.getAttribute('data-param');
+        if (param == 'options') {
+            orderState[param][target.value] = target.checked;
+        } else {
+            orderState[param] = target.value;
+        }
+        showResult();
+    }));
+    promoBlock.addEventListener('input', ({ target }) => {
+        const param = target.parentElement.getAttribute('data-param');
+        const customerPromo = target.value.toLowerCase();
+        if (orderState[param].hasOwnProperty(customerPromo)) {
+            orderState[param][customerPromo] = true;
+        } else {
+            for (const promo in orderState[param]) {
+                orderState[param][promo] = false;
+            }
+        }
+        showResult();
+    });
 };
 
 export default calc;

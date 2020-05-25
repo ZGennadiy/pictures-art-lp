@@ -210,24 +210,32 @@
 							<div>Файл не выбран</div>
 							<input type=file name=upload>
 						</div>
-						<select id=size>
-							<option value>Выберите размер картины</option>
-							<option value='small'>40x50</option>
-							<option value='medium'>50x70</option>
-							<option value='big'>70x70</option>
-							<option value='large'>70x100</option>
-						</select>
-						<select id=material>
-							<option value>Выберите материал картины</option>
-							<option value='fibre' title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
-							<option value='linen' title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
-							<option value='cotton' title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
-						</select>
+						<div data-param="size">
+							<select id=size>
+								<option value>Выберите размер картины</option>
+								<option value='small'>40x50</option>
+								<option value='medium'>50x70</option>
+								<option value='big'>70x70</option>
+								<option value='large'>70x100</option>
+							</select>
+						</div>
+						<div data-param="material">
+							<select id=material>
+								<option value>Выберите материал картины</option>
+								<option value='fibre' title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
+								<option value='linen' title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
+								<option value='cotton' title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
+							</select>
+						</div>
+						<div id="options">
 							<p class="calc-options">Дополнительные услуги:</p>
-							<label class="calc-label"><input type="checkbox" value="gelCover">Покрытие арт-гелем</label>
-							<label class="calc-label"><input type="checkbox" value="express">Экспресс-изготовление</label>
-							<label class="calc-label"><input type="checkbox" value="delivery">Доставка готовых работ</label>
-						<input type="text" class="promocode" placeholder="Введите ваш промокод">
+							<label data-param='options' class="calc-label"><input type="checkbox" value="gelCover">Покрытие арт-гелем</label>
+							<label data-param='options' class="calc-label"><input type="checkbox" value="express">Экспресс-изготовление</label>
+							<label data-param='options' class="calc-label"><input type="checkbox" value="delivery">Доставка готовых работ</label>
+						</div>
+						<div data-param="promocode">
+							<input type="text" class="promocode" placeholder="Введите ваш промокод">
+						</div>
 						<div class=calc-price>Для расчета нужно выбрать размер картины и материал картины</div>
 						<button class="button button-order">Быстрый заказ</button>
 					</form>
