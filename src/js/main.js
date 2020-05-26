@@ -9,6 +9,7 @@ import filter from './modules/filter';
 import picturesInterior from './modules/picturesInterior';
 import collapse from './modules/collapse';
 import burger from './modules/burger';
+import scrolling from './modules/scrolling';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -26,4 +27,5 @@ window.addEventListener('DOMContentLoaded', () => {
     picturesInterior('.sizes-block');
     collapse('.accordion-heading');
     burger('.burger-menu', '.burger');
+    scrolling('.pageup');
 });
