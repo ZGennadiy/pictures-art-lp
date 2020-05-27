@@ -27,8 +27,7 @@ const filter = () => {
             items.forEach((btn) => btn.classList.remove('active'));
             target.classList.add('active');
             const classTarget = target.classList[0];
-            console.log(classTarget);
-            if (classTarget == '.grandmother' || classTarget == '.granddad') {
+            if (classTarget == 'grandmother' || classTarget == 'granddad') {
                 typeFilter();
             } else {
                 typeFilter(wrapper.querySelectorAll(`.${classTarget}`));

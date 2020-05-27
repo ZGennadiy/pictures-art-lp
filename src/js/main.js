@@ -10,6 +10,7 @@ import picturesInterior from './modules/picturesInterior';
 import collapse from './modules/collapse';
 import burger from './modules/burger';
 import scrolling from './modules/scrolling';
+import drop from './modules/drop';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -28,4 +29,5 @@ window.addEventListener('DOMContentLoaded', () => {
     collapse('.accordion-heading');
     burger('.burger-menu', '.burger');
     scrolling('.pageup');
+    drop();
 });
